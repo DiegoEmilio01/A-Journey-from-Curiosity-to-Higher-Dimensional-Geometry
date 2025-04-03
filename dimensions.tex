@@ -32,7 +32,7 @@
 	
 	Let's start with an exercise, let $S$ be a square \cite{euclid} with sides of length $a$ and let $d$ be the length of its face diagonal. By Pythagoras \cite{euclid} we can establish the relation $d=a\sqrt{2}$. Let $d'$ be the length of the space diagonal on $C$, a cube \cite{euclid} with edges of length $a'$. Under a similar argument the length of the larger diagonal, which forms a right triangle jointly with the diagonal of one of the faces and an edge, can be calculated as $d'=a'\sqrt{3}$.
 	
-	We now define as $d(0) = a\sqrt{0}$ the diagonal of a point (no diagonal) and as $d(1) = a\sqrt{1}$ the diagonal of a line (the line itself). Then, we can generalize the analysis by the formula $d(n) = a\sqrt{n}$, where $d(n)$ outputs the length of the larger diagonal of an $n$-dimensional ($n$-dim from now on) polygon $P$ such that all sides are of size $a$ and all internal angles are right angles \textbf{cite needed}.
+	We now define as $d(0) = a\sqrt{0}$ the diagonal of a point (no diagonal) and as $d(1) = a\sqrt{1}$ the diagonal of a line (the line itself). Then, we can generalize the analysis by the formula $d(n) = a\sqrt{n}$, where $d(n)$ outputs the length of the larger diagonal of an $n$-dimensional ($n$-dim from now on) cube, a polytope $P$ such that all sides are of size $a$ and all internal angles are right angles \cite{coxeter1973regular} (see \autoref{sec:def}).
 
 	\begin{proof}
 		We will show the statement by the principle of induction \cite{rosen2011discrete}.
@@ -53,9 +53,11 @@
 	
 	This concept may not be immediately intuitive. To clarify, if we could truly see in three dimensions, we would be able to observe all six faces of a cube simultaneously. However, we can only perceive up to three faces at once and must rely on our imagination to visualize the entire object.
 	
-	First, let’s define the basic elements we commonly observe. A point is a 0-dimensional object, and a straight line is a 1-dim object, defined as the shortest path between two points (called line from now on). A square is a 2-dim object with four lines of equal length that connect four points in a closed loop, with all angles being right angles. And a cube is a 3-dim object composed of six squares of equal size, such that every line is shared by two squares and all angles between adjacent squares are right angles.
+	First, let us define the fundamental elements, much like Euclid did at the beginning of his books \cite{euclid}. A point is a 0-dimensional object, and a straight line is a 1-dim object, defined as the shortest path between two points (called line from now on). A square is a 2-dim object with four lines of equal length that connect four points in a closed loop, with all angles being right angles. And a cube is a 3-dim object composed of six squares of equal size, such that every line is shared by two squares and all angles between adjacent squares are right angles.
 
-	We refer to the components of a higher-dimensional object as sub-objects, for example, a square is a sub-object of a cube. To construct the next object from a given object, we perform a parallel translation of a copy of the object and connect each original point to its corresponding point in the copy with a straight line. Each new translation is of the same length as the translation in the previous dimension. When deriving formulas to describe objects, it is essential to demonstrate how they relate to this described construction. The number of sub-objects for each object is listed in \autoref{objects_table}.
+	We refer to the components of a higher-dimensional object as sub-objects, for example, a square is a sub-object of a cube. To construct the next object from a given object, we perform a translation of a copy of the object perpendicular to all the lines on the object, and connect each original point to its corresponding point in the copy with a straight line. Each new translation is of the same length as the translation in the previous dimension. This particular generalization of a regular polytope given by Coxeter \cite{coxeter1973regular} is called hyper-cube or measure polytope (or $\gamma_n$). An $n$-dim cube is a particular case of an orthotope, where all translations are not necessarily the same length; which in turn is a particular case of a parallelotope, where translations are not necessarily perpendicular \cite{coxeter1973regular}. When deriving formulas to describe objects, it is essential to demonstrate how they relate to this described construction.
+	
+	The number of sub-objects for each object is listed in \autoref{objects_table}.
 
 	\begin{table}[ht]
 		\centering
@@ -67,7 +69,7 @@
 			2-dim & 0 & 0 & 1 & \textbf{6}\\\hline
 			3-dim & 0 & 0 & 0 & 1\\\hline
 		\end{tabular}
-		\caption{Number of components in the constructed objects with the $(n-1)$-dim diagonal highlighted}
+		\caption{Number of components in the constructed objects with the $(n-1)$-dim diagonal highlighted \cite{coxeter1973regular}}
 		\label{objects_table}
 	\end{table}
 	%\protect\footnotemark
@@ -97,13 +99,13 @@
 	
 	Regarding the third and forth row in \autoref{objects_table}, we lack enough data and we must generate the next dimension to be capable of deducting further patterns. We define a tesseract following the same construction described in \autoref{sec:intro} with respect to a cube such that we can use the formulas that we already derived. In consequence, a tesseract must have 16 points and 32 lines.
 	
-	To determine how many cubes are in a tesseract, we can examine the $(n-1)$-dim diagonal which is highlighted in \autoref{objects_table}. We observe: 2 points in a line, 4 lines in a square, and 6 squares in a cube. This new pattern suggests that the $n-1$ diagonal is described by the expression $2 \cdot n$, and that a tesseract contains 8 cubes. To calculate the number of squares, we can also use a diagonal as it provides more information than the row. Although this is more challenging to deduce, all indications suggest that we are dealing with a combinatorial problem, which points toward a factorial approach. The $(n-2)$-dim diagonal seems to be described by the expression $2 \cdot n \cdot (n-1)$, leading to the conclusion that a tesseract contains 24 squares. These results are shown in \autoref{4d_objects_table}.
+	To determine how many cubes are in a tesseract, we can examine the $(n-1)$-dim diagonal which is highlighted in \autoref{objects_table}. We observe: 2 points in a line, 4 lines in a square, and 6 squares in a cube \cite{coxeter1973regular}. This new pattern suggests that the $n-1$ diagonal is described by the expression $2 \cdot n$, and that a tesseract contains 8 cubes. To calculate the number of squares, we can also use a diagonal as it provides more information than the row. Although this is more challenging to deduce, all indications suggest that we are dealing with a combinatorial problem, which points toward a factorial approach. The $(n-2)$-dim diagonal seems to be described by the expression $2 \cdot n \cdot (n-1)$, leading to the conclusion that a tesseract contains 24 squares. These results are shown in \autoref{4d_objects_table}.
 	
 	\begin{table}[ht]
 		\centering
 		\begin{tabular}{||c || c c c c c||}
 			\hline
-			Sub-objects $\backslash$ Objects & Point & Line & Square & Cube & Tesseract\\\hline\hline
+			Sub-objects $\backslash$ Objects & Point & Line & Square & Cube & Tesseract \cite{coxeter1973regular}\\\hline\hline
 			0-dim & 1 & 2 & 4 & 8  & 16\\\hline
 			1-dim & 0 & 1 & 4 & \textbf{12} & 32\\\hline
 			2-dim & 0 & 0 & 1 & \textbf{6}  & \textbf{24}\\\hline
@@ -139,7 +141,7 @@
 	\end{table}
 	
 	Let $n$ and $m$ be dimensions such that $n \geq m \geq 0$. We will denote the amount of $m$-dim sub-objects in a $n$-dim object as $P(n,m)$ and the falling factorial of $n$ over $m$ factors as $(n)_{m}$. We infer from \autoref{resume_table} that the pattern of the formulas is described by the expression
-	$$P(n,m) = n \cdot (n-1)\cdot ... \cdot [n-(m-2)] \cdot [n-(m-1)] \cdot \frac{2^{n-m}}{m!} = \frac{(n)_{m}}{m!} \cdot 2^{n-m} = \binom{n}{m}\cdot2^{n-m}.$$
+	$$P(n,m) = n \cdot (n-1)\cdot ... \cdot [n-(m-2)] \cdot [n-(m-1)] \cdot \frac{2^{n-m}}{m!} = \frac{(n)_{m}}{m!} \cdot 2^{n-m} = \binom{n}{m}\cdot2^{n-m} \cite{coxeter1973regular}.$$
 	
 	Notice than given an $n$-dim object and a point on the object, selecting a set of $m$ adjacent points fully identifies an $m$-dim object. For example, considering a particular point in a cube, combining it with an adjacent point identifies one of the 12 lines. When the point is combined with two other adjacent points, only one of the 6 squares is adjacent to all three selected points simultaneously. This selection enables us to count sub-objects and explain the formula.
 	
@@ -147,12 +149,12 @@
 	
 	A second interpretation comes from a known property of binomial coefficients \cite{rice2007}. It can be proven that $P(n,m) = \sum_{k=m}^{n} \binom{n}{k} \binom{k}{m}$, where this expression is derived by fixing a point on the object and counting all adjacent structures connected to that point. In more explicit terms, $P(n,m)$ can be calculated as selecting a point and computing the sum, for every $k\geq m$, of: the number of $m$-dim sets adjacent to the point in $k$ dimensions, multiplied by the number of $k$-dim sets adjacent to the point in $n$ dimensions. Our derived formula counts the same: there are $\binom{n}{m}$ ways to identify $m$-dim sets adjacent to a point in $n$ dimensions, and there are $2^{n-m}$ ways to complete an $m$-dim set of points to generate every intermediate $k$-dim object.
 	
-	Lastly, using the binomial theorem \cite{rice2007}, another interesting interpretation is that $P(n,m)$ can be defined as the coefficient of the term $X^{m}$ in the expansion of the expression $(2 + X)^{n}$. This fact is going to be used in \autoref{sec:euler}.
+	Lastly, using the binomial theorem \cite{rice2007}, another interesting interpretation is that $P(n,m)$ can be defined as the coefficient of the term $X^{m}$ in the expansion of the expression $(2 + X)^{n}$ \cite{coxeter1973regular}. This fact is going to be used in \autoref{sec:euler}.
 	
 	
 	\subsection{Proof of the formula's geometric interpretation}
 	
-	Let $n$ and $m$ dimensions such that $n \geq m \geq 0$, we expand on the geometric interpretations by giving the recursion $f'(n,m) = 2 \cdot f'(n-1, m) + f'(n-1, m-1)$ such that $f'(0,0) = 1$. To count the amount of $m$-dim objects in an $n$-dim object, generate an $(n-1)$-dim object, duplicate its amount of $m$-dim objects and add its amount of $(m-1)$-dim objects. In other words, to calculate a cell in \autoref{4d_objects_table}, duplicate the cell on the left and add the diagonal upper-left cell. For example, in the case of the 3 cells highlighted on the table: $24 = 2 \cdot 6 + 12$. Similar to $f$, the previously presented recursion, $f'$ also has a geometric interpretation related to the construction of objects (see \autoref{sec:intro}).
+	Let $n$ and $m$ dimensions such that $n \geq m \geq 0$, we expand on the geometric interpretations by giving the recursion $f'(n,m) = 2 \cdot f'(n-1, m) + f'(n-1, m-1)$ such that $f'(0,0) = 1$ \cite{coxeter1973regular}. To count the amount of $m$-dim objects in an $n$-dim object, generate an $(n-1)$-dim object, duplicate its amount of $m$-dim objects and add its amount of $(m-1)$-dim objects. In other words, to calculate a cell in \autoref{4d_objects_table}, duplicate the cell on the left and add the diagonal upper-left cell. For example, in the case of the 3 cells highlighted on the table: $24 = 2 \cdot 6 + 12$. Similar to $f$, the previously presented recursion, $f'$ also has a geometric interpretation related to the construction of objects (see \autoref{sec:intro}).
 	
 	\begin{proof}
 		To generate the next dimension, we duplicate an object, perform a translation, and connect the duplicated points. Each time a translation and connection are performed: a line is generated between each point and its duplicate, points from one line are connected to points from its duplicate to form a square, points from one square are connected to points from its duplicate to form a cube, and so on. Thus, from every $m$-dim object a new $(m+1)$-dim object is generated in the connection.
@@ -181,9 +183,9 @@
 	
 	A known property of polygons is the Euler characteristic \cite{euler}, defined for $3$-dim objects as the number of points, minus the number of lines, plus the amount of squares (using our name convention). For example, cubes have an Euler characteristic of $8 - 12 + 6 = 2$.
 
-	Given a $n$-dim object, let $d_m$ be the amount of $m$-dim objects and $E$ the Euler characteristic. We generalize the property as follows: $E=d_{0}-d_{1}+d_{2}- ... \pm d_{n-3}\pm d_{n-2}\pm d_{n-1} = \sum_{m=0}^{n-1}(-1)^{m}d_{m}$. If we study the objects obtained by the construction described in \autoref{sec:intro} we arrive at
+	Given a $n$-dim object, let $d_m$ be the amount of $m$-dim objects and $E$ the Euler characteristic. We generalize the property as Schläfli did \cite{coxeter1973regular}: $E=d_{0}-d_{1}+d_{2}- ... \pm d_{n-3}\pm d_{n-2}\pm d_{n-1} = \sum_{m=0}^{n-1}(-1)^{m}d_{m}$. If we study the objects obtained by the construction described in \autoref{sec:intro} we arrive at
 	$$E_{obj} \ = \ \sum_{m=0}^{n-1}(-1)^{m} \cdot P(n,m)\ =\ \sum_{m=0}^{n-1}(-1)^{m} \cdot \binom{n}{m} \cdot 2^{n-m},$$
-	and if we complete the sum we obtain
+	and if we complete the sum (from the fact that $P(n,m)$ comes from the expansion of $(2 + X)^{n}$ \cite{coxeter1973regular}) we obtain
 	$$E_{obj} \ =\ \Bigg[\sum_{m=0}^{n} \binom{n}{m} \cdot 2^{n-m} \cdot (-1)^{m}\Bigg] - (-1)^m \ = \ (2 + (-1))^{n}-(-1)^{n} \ = \ 1-(-1)^{n}.$$
 	
 	Consequently, for every $i \geq 0$, objects of dimension $2i$ have an Euler characteristic of 2, whereas those of dimension $2i+1$ exhibit an Euler characteristic of 0.
@@ -203,7 +205,7 @@
 	
 	The generalization of this concept for comparing $m$-dim objects is straightforward: the ratio is simply a factor of $k^m$. For example, let $\varphi$ and $\phi$ be two objects of unknown dimensions. The only available information is that the ratio of their three-dimensional spaces is $1:8$, and the length of $A$ is $5cm$. Using the generalization, we find that the ratio of similarity is $k = 1:2$, leading to a length of $10cm$ for $B$.
 	
-	Analogous to conic sections, one can consider slicing high-dimensional objects with a plane or higher-dimensional planes. This approach enables the study of numerous concepts from Euclidean geometry \cite{euclid} within our framework, including congruence, Euclidean distance, Hamming distance, Thales's theorem, and many others.
+	Analogous to conic sections, one can consider the slicing or truncation of high-dimensional objects \cite{coxeter1973regular} with a plane or higher-dimensional planes. This approach enables the study of numerous concepts from Euclidean geometry \cite{euclid} within our framework, including congruence, Euclidean distance, Hamming distance, Thales's theorem, and many others.
 	
 	
 	\subsection{Real dimensions}
