@@ -77,14 +77,16 @@
 	
 	\section{Deducible formulas \label{sec:deducible}}
 	
-	Notice in \autoref{objects_table} that interesting patterns begin to emerge once the information is organized. There is a clear relationship between the amount of sub-objects and the dimension of a particular object. We start deducing patters bottom-up because deriving a general formula from the construction of the objects is a very challenging task.
+	Notice in \autoref{objects_table} that interesting patterns begin to emerge once the information is organized. There is a clear relationship between the amount of sub-objects and the dimension of a particular object. We start inferring patterns bottom-up because deriving a general formula from the construction of the objects using intuition is a very challenging task for someone who seeks an introduction to the matter.
 	
-	Once we go over an interpretation of our results, we will mathematically show that a derived formula is consistent with our method to build the next dimension of an object. With this approach, every found pattern will be a mental exercise and a great way to internalize these concepts. For instance, the number of points $p(n)$ given a dimension $n$ can be simply calculated as $p(n) = 2^{n}$. The geometric interpretation of this formula arises from the duplication of an object as it is extended into the next dimension, with the generation of points occurring exclusively in this process.
+	After discussing a pattern, we will mathematically demonstrate that the derived formula aligns with our method for constructing an object's next dimension. With this approach, every found pattern will be a mental exercise and a great way to develop an intuition. For instance, the number of points $p(n)$ given a dimension $n$ can be simply calculated as $p(n) = 2^{n}$. The geometric interpretation of this formula arises from the duplication of an object as it is extended into the next dimension, with the generation of points occurring exclusively in this process.
 	
-	For the number of lines, we have to shift the row to the right so the exponent will become $n-1$. This second row differs from the first because it seems to be multiplied by a factor that depends on the dimension. In this case this factor is just $n$ and the deducted formula is $l(n) = n \cdot 2^{n-1}$. The geometric interpretation for this formula is not as straightforward as in the case of the first row.
+	For the number of lines, we have to shift the row to the right so the exponent will become $n-1$. This second row differs from the first because it seems to be multiplied by a factor that depends on the dimension (the sequence is $k_1 \cdot 2^{0}, k_2 \cdot 2^{1}, k_3 \cdot 2^{2}$). In this case this factor is clearly $n$ and it follows that the deducted formula is $l(n) = n \cdot 2^{n-1}$.
+	
+	The geometric interpretation for this formula is not as straightforward as in the case of the first row. In the duplication process, each line is doubled, while in the connection process, a new line is drawn between each original point and its corresponding copy. The combined process outputs the recursive formula $f(n) = 2 \cdot f(n-1) + p(n-1)$ such that $f(0) = 0$ and $f(1) = 1$ (see \autoref{objects_table}).
 	
 	\begin{proof}
-		In the duplication process, each line is doubled, while in the connection process, a new line is drawn between each original point and its corresponding copy. The combined process outputs the recursive formula $f(n) = 2 \cdot f(n-1) + p(n-1)$ such that $f(0) = 0$ and $f(1) = 1$ (see \autoref{objects_table}). Then, it is evident that $l(0) = 0$ and $l(1) = 1$, and if we plug in our formula for $l(n)$ and $p(n)$ into the recursion we obtain
+		 It is evident that $l(0) = 0$ and $l(1) = 1$, and if we plug in our formula for $l(n)$ and $p(n)$ into the recursion we obtain
 		\begin{eqnarray*}
 			f(n) & = & 2 \cdot (n-1) \cdot 2^{n-2} + 2^{n-1}\\
 			& = & (n-1) \cdot 2^{n-1} + 2^{n-1}\\
@@ -93,7 +95,6 @@
 		\end{eqnarray*}
 		thereby solving the recursion using the principle of induction \cite{rosen2011discrete}.
 	\end{proof}
-
 
 	The previous analysis is key to understand where these formulas come from as we will show a generalization in \autoref{sec:generalization}. Each pattern has its own corresponding expression, interpretation, and recursive formula.
 	
