@@ -173,18 +173,29 @@
 	To count the amount of $m$-dim objects in an $n$-dim object, generate an $(n-1)$-dim object, duplicate its amount of $m$-dim objects and add its amount of $(m-1)$-dim objects. In other words, each cell's value in \autoref{4d_objects_table} is determined by doubling its immediate left neighbor and adding the upper-left diagonal cell. For example, in the case of the $3$ cells highlighted on the table: $24 = 2 \cdot 6 + 12$. Similar to $f$, the previously presented recursion, $f'$ also has a geometric interpretation related to the construction of objects (see \autoref{sec:intro}).
 	
 	\begin{proof}
-		To generate the next dimension, we duplicate an object, perform a translation, and connect the duplicated points. Each time a translation and connection are performed: a line is generated between a point and its duplicate, points from one line are connected to points from its duplicate to form a square, points from one square are connected to points from its duplicate to form a cube, and so on. Thus, from every $m$-dim object a new $(m+1)$-dim object is generated in the connection (while Coxeter’s treatment remains concise \cite{coxeter1973regular}, our analysis provides the detailed argument).
+		To generate the next dimension, we duplicate an object, perform a translation, and connect the duplicated points (while Coxeter’s treatment remains concise \cite{coxeter1973regular}, our following analysis provides a detailed argument). Each time a translation and connection are performed: a line is generated between a point and its duplicate, points from one line are connected to points from its duplicate to form a square, points from one square are connected to points from its duplicate to form a cube, and so on. Thus, from every $m$-dim object a new $(m+1)$-dim object is additionally generated in the connection.
 		
-		This process is described by the recursion: double the number of objects and add the number of objects from the previous lower dimension to account for the connection process. 
+		The duplication and connection are described by the recursion: double the number of $m$-dim objects and add the number of $(m-1)$-dim objects to account for the connection process. 
 		
-		Thus, now we show that the derived formula is the solution for the recursion $f'$. It is clear that $P(0,0) = 1$, and if we plug in $P(n,m)$ into the recursion we obtain
+		Thus, now we show that the derived formula is a solution for the recursion $f'$ when $m \leq n$. It is clear that base case $f'(0,0) = 1 = P(0,0)$ holds. Then, consider $1<n$ and assume that $f'(k,m) = P(k,m)$ for every $k < n$. In the case $m=0$, if we plug in $P(n,m)$ into the recursion we obtain
 		\begin{eqnarray*}
-			f'(n,m) & = & 2 \cdot \binom{n-1}{m} \cdot 2^{(n-1)-m} + \binom{n-1}{m-1} \cdot 2^{(n-1)-(m-1)}\\
+			f'(n,0) & = & 2 \cdot f'(n-1, 0) + f'(n-1, -1)\\
+			& = & 2 \cdot \binom{n-1}{0} \cdot 2^{(n-1)-0} + 0\\
+			& = & \binom{n-1}{0} \cdot 2^{n-0}\\
+			& = & \binom{n}{0} \cdot 2^{n-0}\\
+			& = & P(n,0).
+		\end{eqnarray*}
+
+		While in the general case we obtain
+		\begin{eqnarray*}
+			f'(n,m) & = & 2 \cdot f'(n-1, m) + f'(n-1, m-1)\\
+			& = & 2 \cdot \binom{n-1}{m} \cdot 2^{(n-1)-m} + \binom{n-1}{m-1} \cdot 2^{(n-1)-(m-1)}\\
 			& = & \binom{n-1}{m} \cdot 2^{n-m} + \binom{n-1}{m-1} \cdot 2^{n-m} \ = \ \Big[\frac{(n-1)_{m}}{m!} + \frac{(n-1)_{m-1}}{(m-1)!} \Big] \cdot 2^{n-m}\\
 			& = & \Bigg[\frac{(n-1)_{m}}{m!} + \frac{m \cdot (n-1)_{m-1}}{m \cdot (m-1)!} \Bigg] \cdot 2^{n-m} \ = \ \frac{(n-1)_{m} + m \cdot (n-1)_{m-1}}{m!} \cdot 2^{n-m}\\
 			& = & \frac{[(n-1) - m + 1] \cdot (n-1)_{m-1} + m \cdot (n-1)_{m-1}}{m!} \cdot 2^{n-m}\\
 			& = & \frac{(n- m) \cdot (n-1)_{m-1} + m \cdot (n-1)_{m-1}}{m!} \cdot 2^{n-m}\\
-			& = & \frac{n \cdot (n-1)_{m-1}}{m!} \cdot 2^{n-m} \ = \ \frac{n_{m}}{m!} \cdot 2^{n-m} \ = \ \binom{n}{m}\cdot2^{n-m} = P(n,m),
+			& = & \frac{n \cdot (n-1)_{m-1}}{m!} \cdot 2^{n-m} \ = \ \frac{n_{m}}{m!} \cdot 2^{n-m}\\
+			& = & \binom{n}{m}\cdot2^{n-m} = P(n,m),
 		\end{eqnarray*}
 		thereby solving the recursion using the principle of induction \cite{rosen2011discrete}.
 	\end{proof}
