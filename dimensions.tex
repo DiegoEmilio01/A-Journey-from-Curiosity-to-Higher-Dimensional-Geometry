@@ -20,13 +20,15 @@
 	\maketitle
 
 	\begin{abstract}
-		The first draft of this work was completed in June 2017, when I was turning 18 in my final year of high school. At the time, I was learning a lot of fundamental mathematics and had a strong desire to understand dimensions beyond what we can see with our own eyes, in other words, trying to visualize higher-dimensional objects in my mind. Motivated by this curiosity while feeling I had acquired enough knowledge on the subject, I wrote a manuscript called ``Dimensions'', which explored some mathematical concepts but primarily focused on interpreting and visualizing such new objects. During that period, I regarded the connection between geometry and combinatorics as the fundamental truth of mathematics, much like the mathematicians of earlier eras. With this in mind, my essay aimed to bridge the gap between abstract mathematical concepts and intuitive visualization. This current version serves as a translation, reinterpretation, and self-review of the original draft, featuring refined explanations and updated insights.
+		The first draft of this work was completed in June 2017, when I was turning 18 in my final year of high school. At the time, I was learning a lot of fundamental mathematics and had a strong desire to understand dimensions beyond what we can see with our own eyes, in other words, trying to visualize higher-dimensional objects in my mind. Motivated by this curiosity while feeling I had acquired enough knowledge on the subject, I wrote a manuscript called ``Dimensions'', which explored some mathematical concepts but primarily focused on interpreting and visualizing such new objects. During that period, I regarded the connection between geometry and combinatorics as the fundamental truth of mathematics, much like the mathematicians of earlier eras \cite{euclid}. With this in mind, my essay aimed to bridge the gap between abstract mathematical concepts and intuitive visualization. This current version serves as a translation, reinterpretation, and self-review of the original draft, featuring refined explanations and updated insights. Adopting a bottom-up approach, it simultaneously serves as both a complement to and detailed revision of Coxeter's foundational work \cite{coxeter1973regular}.
 		% Naturally, my primary source of information in the early stages was Wikipedia\footnote{\url{https://www.wikipedia.org/}}.
 	\end{abstract}
 
 	\section{Introduction \label{sec:intro}}
 	
-	This chapter begins by providing the motivation for our study, defining key terms, and outlining our approach to the subject. In \autoref{sec:deducible}, we explore the elements introduced, aiming to identify fundamental patterns that relate the number of components to the dimensionality of the structures. These patterns are then generalized and their geometric interpretations analyzed in \autoref{sec:generalization} to enhance our ability to visualize the elements. In \autoref{sec:apps}, we discuss potential applications and properties derived from our findings. Finally, in \autoref{sec:conclusion}, we conclude the paper and propose directions for further research.
+	We focus on the study of hyper-cubes, one of the many geometric structures extensively explored by Coxeter \cite{coxeter1973regular}. His work presents a highly effective top-down approach to geometry, though some inductive proofs are left as exercises for the reader. In this paper, we introduce this area of mathematics through a bottom-up, detail-oriented approach, providing complete proofs where they were previously omitted to build intuition for non-expert readers.
+	
+	This chapter begins by providing the motivation for our study, defining key terms, and outlining our approach to the subject. In \autoref{sec:deducible}, we explore the elements introduced, aiming to identify fundamental patterns that relate the number of components to the dimensionality of hyper-cubes. These patterns are then generalized and their geometric interpretations analyzed in detail in \autoref{sec:generalization} to enhance our ability to visualize the elements. In \autoref{sec:apps}, we discuss potential applications and properties derived from our findings. Finally, in \autoref{sec:conclusion}, we conclude the paper and propose directions for further research.
 		
 	\subsection{Motivation}
 	
@@ -210,29 +212,29 @@
 	
 	A known property of polygons is the Euler characteristic \cite{euler}, defined for $3$-dim objects as the number of points, minus the number of lines, plus the amount of squares (using our name convention). For example, cubes have an Euler characteristic of $8 - 12 + 6 = 2$.
 
-	Given a $n$-dim object, let $d_m$ be the amount of $m$-dim objects and $E$ the Euler characteristic. We generalize the property as Schläfli did \cite{coxeter1973regular}: $E=d_{0}-d_{1}+d_{2}- ... \pm d_{n-3}\pm d_{n-2}\pm d_{n-1} = \sum_{m=0}^{n-1}(-1)^{m}d_{m}$. If we study the objects obtained by the construction described in \autoref{sec:intro} we arrive at
+	Given a $n$-dim object, let $d_m$ be the amount of $m$-dim objects and $E$ the Euler characteristic. We generalize the property similar to Schläfli \cite{coxeter1973regular}: $E=d_{0}-d_{1}+d_{2}- ... \pm d_{n-3}\pm d_{n-2}\pm d_{n-1} = \sum_{m=0}^{n-1}(-1)^{m}d_{m}$. If we apply the formula to the studied objects obtained by the construction described in \autoref{sec:intro} we arrive at
 	$$E_{obj} \ = \ \sum_{m=0}^{n-1}(-1)^{m} \cdot P(n,m)\ =\ \sum_{m=0}^{n-1}(-1)^{m} \cdot \binom{n}{m} \cdot 2^{n-m},$$
 	and if we complete the sum (from the fact that $P(n,m)$ comes from the expansion of $(2 + X)^{n}$ \cite{coxeter1973regular}) we obtain
 	$$E_{obj} \ =\ \Bigg[\sum_{m=0}^{n} \binom{n}{m} \cdot 2^{n-m} \cdot (-1)^{m}\Bigg] - (-1)^m \ = \ (2 + (-1))^{n}-(-1)^{n} \ = \ 1-(-1)^{n}.$$
 	
-	Consequently, for every $i \geq 0$, objects of dimension $2i$ have an Euler characteristic of $2$, whereas those of dimension $2i+1$ exhibit an Euler characteristic of $0$.
+	Consequently, for every $i \geq 0$, $2i$ dimensional objects have an Euler characteristic of $2$, whereas those of dimension $2i+1$ exhibit an Euler characteristic of $0$ \cite{coxeter1973regular}.
 	
 	\subsection{Measurements}
 	
 	Given an $n$-dim object, the distance $a$ associated with each of the $n$ translations is called length. In such an object, all lines measure $a$ units, all squares measure $a^{2}$ square units, and so on. The amount of $m$-dimensional space occupied by the object can be calculated by multiplying the number of objects by the space occupied by a single object:
 	$$M(n,m,a) = P(n,m) \cdot a^{m} = \binom{n}{m} \cdot 2^{n-m} \cdot a^{m}.$$
 	
-	Similarly to the case of $P(n,m)$, this formula arises naturally from the terms of the expansion of $(2 + a)^{n}$. This observation further connects the construction of these objects to the binomial theorem, with both geometric interpretations exhibiting notable parallels.
+	Similarly to the case of $P(n,m)$, this formula arises naturally from the terms of the expansion of $(2 + a)^{n}$. This observation further links the construction of these objects to the binomial theorem \cite{rice2007}, exhibiting notable parallels between their geometric interpretations.
 	
 	Is worth noticing that new units of measurement appear from the construction of higher-dimensional objects, for example $cm^{4}$. Or even new equivalencies like $1\ litre^{2} = 1000000\ cm^{6}$. For example, a $5$-dim object of length $3cm$ occupies a $4$-dim space of: $\binom{5}{4} \cdot 2^{5-4} \cdot (3cm)^{4} = 10 \cdot  81 cm^{4} = 810 cm^{4}$.
 	
 	\subsection{Similarity}
 	
-	Due to the construction, and the angles formed between the objects, all elements of the same dimension are similar to each other \cite{euclid}, meaning they all have the same shape. Given two $n$-dim objects, one with length $a$ and the other with length $a'$, the ratio of similarity \cite{euclid} is defined as $k = a:a'$. Consequently, all squares on both objects, and thus the total $2$-dim space, will have a ratio of $k^{2}$.
+	Due to the construction, and the angles formed between the objects, all elements of the same dimension are similar to each other \cite{euclid}, meaning they all have the same shape. Given two $n$-dim objects, one with length $a$ and the other with length $a'$, the ratio of similarity \cite{euclid} is defined as $k = a:a'$. Consequently, all squares on both objects, and thus the total $2$-dim space, scale with a ratio of $k^{2}$.
 	
-	The generalization of this concept for comparing $m$-dim objects is straightforward: the ratio is simply a factor of $k^m$. For example, let $\varphi$ and $\phi$ be two objects of unknown dimensions. The only available information is that the ratio of their three-dimensional spaces is $1:8$, and the length of $A$ is $5cm$. Using the generalization, we find that the ratio of similarity is $k = 1:2$, leading to a length of $10cm$ for $B$.
+	The generalization of this concept for comparing $m$-dim objects is straightforward: the ratio is simply a factor of $k^m$. For example, let $\varphi$ and $\phi$ be two objects of unknown dimensions. The only available information is that the three-dimensional spaces ratio between $\varphi$ and $\phi$ is $1:8$, and the length of $\varphi$ is $5cm$. Using the generalization, we find that the ratio of similarity is $k = 1:2$, leading to a length of $10cm$ for $\phi$.
 	
-	Analogous to conic sections, one can consider the slicing or truncation of high-dimensional objects \cite{coxeter1973regular} with a plane or higher-dimensional planes. This approach enables the study of numerous concepts from Euclidean geometry \cite{euclid} within our framework, including congruence, Euclidean distance, Hamming distance, Thales's theorem, and many others.
+	Analogous to conic sections, one can consider the slicing or truncation of high-dimensional objects \cite{coxeter1973regular} with a plane or high-dimensional planes. This approach enables the study of numerous concepts from Euclidean geometry \cite{euclid} within our framework, including congruence, Euclidean distance, Hamming distance, Thales's theorem, and many others.
 	
 	
 	\subsection{Real dimensions}
@@ -240,14 +242,14 @@
 	We can extend the formula $P(n,m)$ to a domain of real positive inputs by considering the generalization of factorials using integrals as $\Pi(n)=\int_{0}^{\infty} t^n e^{-t} dt$ \cite{rice2007}. Then, we arrive at $$P(n,m)=\frac{\Pi(n) \cdot 2^{n-m}}{\Pi(m) \cdot \Pi(n-m)},$$
 	where $n,m \in \mathbb{R}^{+}_{0}$ such that $n\geq m$. Given these restrictions, it follows that the output satisfies $P(n,m) \geq 1$. 
 	
-	While an interpretation and application of this formula have yet to be fully explored, we believe it may be linked to fractal dimensions, potentially offering real-world applications in fields such as biology and physics.
+	While an interpretation and application of this formula have yet to be fully explored, we believe it may be linked to fractal dimensions \textbf{??}, potentially offering real-world applications in fields such as biology and physics.
 
 	
 	\section{Conclusion and Future Directions \label{sec:conclusion}}
 	
-	To summarize, we have outlined key concepts, identified fundamental patterns, and developed geometric interpretations to improve our understanding of the relationship between component numbers and structural dimensions. We believe our approach provides a valuable tool for mentally visualizing higher-dimensional objects.
+	To summarize, we have outlined key concepts, identified fundamental patterns, and developed geometric interpretations to improve our understanding of the relationship between component numbers and structural dimensions. We believe our approach provides a detailed and valuable tool for mentally visualizing higher-dimensional objects.
 	
-	Furthermore, our exploration has uncovered potential applications and suggested further avenues for investigation, including the examination of slicing objects and the study of fractional dimensions. Additionally, we propose the development of new constructions that differ from the one presented in this work.
+	Furthermore, our exploration has uncovered potential applications and suggested further avenues for investigation, including the examination of slicing objects and the study of fractional dimensions. Additionally, we propose the development of new constructions that differ from the one presented in this work, or study a similar analysis on other constructions proposed by Coxeter \cite{coxeter1973regular}.
 	
 	We hope this work serves as both an introduction to the subject and a valuable contribution to future research, paving the way for new applications in both theoretical and practical contexts.
 	
