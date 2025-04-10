@@ -3,8 +3,8 @@
 \usepackage{dimensions}
 
 
-%\title{Dimensions as a High School student's hobby}
-\title{A Personal Journey from Curiosity to Higher-Dimensional Geometry}
+%\title{Dimensions as a High School student's hobby} Personal
+\title{A Journey from Curiosity to Higher-Dimensional Geometry}
 \date{January - 2025}
 
 \author{%
@@ -152,9 +152,9 @@
 	
 	Notice than given an $n$-dim object and a point on the object, selecting a set of $m$ adjacent points fully identifies an $m$-dim object. For example, considering a particular point in a cube, combining it with an adjacent point identifies one of the $12$ lines. Moreover, when a point in a cube is combined with two other adjacent points, only one of the $6$ squares is adjacent to all three points simultaneously. This selection enables us to count sub-objects and give many explanations for the formula.
 	
-	A first interpretation of the formula is based on a combinatorial analysis. Given a dimension $n$, the object has $2^{n}$ points by construction. Then, a single point is adjacent to $n$ points and for each set of $m$ adjacent points a different $m$-dim object is counted. Thus, every point is adjacent to $\binom{n}{m}$ $m$-dim objects. Finally, since an $m$-dim object has $2^{m}$ points, the formula is divided by that factor to avoid counting each $m$-dim object more than once. \textbf{??}
+	A first interpretation of the formula is based on a combinatorial analysis. Given a dimension $n$, the object has $2^{n}$ points by construction. Then, a single point is adjacent to $n$ points and for each set of $m$ adjacent points a different $m$-dim object is counted. Thus, every point is adjacent to $\binom{n}{m}$ $m$-dim objects. Finally, since an $m$-dim object has $2^{m}$ points, the formula is divided by that factor to avoid counting each $m$-dim object more than once \cite{countingHypercubes}.
 	
-	A second interpretation comes from a known property of binomial coefficients \cite{rice2007}. It can be proven that $P(n,m) = \sum_{k=m}^{n} \binom{n}{k} \binom{k}{m}$, where this expression is derived by fixing a point on the object and counting all adjacent structures connected to that point. In more explicit terms, $P(n,m)$ can be calculated as selecting a point and computing the sum, for every $k\geq m$, of: the number of $m$-dim sets adjacent to a point in $k$ dimensions, multiplied by the number of $k$-dim sets adjacent to a point in $n$ dimensions. Our derived formula counts the same: there are $\binom{n}{m}$ ways to identify $m$-dim sets adjacent to a point in $n$ dimensions, and there are $2^{n-m}$ ways to complete a singular $m$-dim set of points, in order to enumerate all intermediate $k$-dim sets present in the object summation. \textbf{??}
+	A second interpretation comes from a known property of binomial coefficients \cite{rice2007}. It can be proven that $P(n,m) = \sum_{k=m}^{n} \binom{n}{k} \binom{k}{m}$ \cite{countingHypercubes}, where this expression is derived by fixing a point on the object and counting all adjacent structures connected to that point. In more explicit terms, $P(n,m)$ can be calculated as selecting a point and computing the sum, for every $k\geq m$, of: the number of $m$-dim sets adjacent to a point in $k$ dimensions, multiplied by the number of $k$-dim sets adjacent to a point in $n$ dimensions. Our derived formula counts the same: there are $\binom{n}{m}$ ways to identify $m$-dim sets adjacent to a point in $n$ dimensions, and there are $2^{n-m}$ ways to complete a singular $m$-dim set of points, in order to enumerate all intermediate $k$-dim sets present in the object summation.
 	
 	Lastly, using the binomial theorem \cite{rice2007}, another interesting interpretation is that $P(n,m)$ can be defined as the coefficient of the term $X^{m}$ in the expansion of the expression $(2 + X)^{n}$ \cite{coxeter1973regular}. This interesting fact can be used when proving properties over these objects, an example is shown in \autoref{sec:euler}.
 	
@@ -242,7 +242,7 @@
 	We can extend the formula $P(n,m)$ to a domain of real positive inputs by considering the generalization of factorials using integrals as $\Pi(n)=\int_{0}^{\infty} t^n e^{-t} dt$ \cite{rice2007}. Then, we arrive at $$P(n,m)=\frac{\Pi(n) \cdot 2^{n-m}}{\Pi(m) \cdot \Pi(n-m)},$$
 	where $n,m \in \mathbb{R}^{+}_{0}$ such that $n\geq m$. Given these restrictions, it follows that the output satisfies $P(n,m) \geq 1$. 
 	
-	While an interpretation and application of this formula have yet to be fully explored, we believe it may be linked to fractal dimensions \textbf{??}, potentially offering real-world applications in fields such as biology and physics.
+	While an interpretation and application of this formula have yet to be fully explored, we believe it may be linked to fractal dimensions \cite{fractionalDim}, potentially offering real-world applications in fields such as biology and physics.
 
 	
 	\section{Conclusion and Future Directions \label{sec:conclusion}}
