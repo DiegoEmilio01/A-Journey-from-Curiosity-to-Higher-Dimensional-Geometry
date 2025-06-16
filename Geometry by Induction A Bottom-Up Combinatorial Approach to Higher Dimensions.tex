@@ -3,8 +3,7 @@
 \usepackage{dimensions}
 
 
-%\title{Dimensions as a High School student's hobby} Personal
-\title{A Journey from Curiosity to Higher-Dimensional Geometry}
+\title{Geometry by Induction A Bottom-Up Combinatorial Approach to Higher Dimensions}
 \date{April - 2025}
 
 \author{%
@@ -20,8 +19,7 @@
 	\maketitle
 
 	\begin{abstract}
-		The first draft of this work was completed in June 2017, when I was turning 18 in my final year of high school. At the time, I was learning a lot of fundamental mathematics and had a strong desire to understand dimensions beyond what we can see with our own eyes, in other words, trying to visualize higher-dimensional objects in my mind. Motivated by this curiosity while feeling I had acquired enough knowledge on the subject, I wrote a manuscript called ``Dimensions'', which explored some mathematical concepts but primarily focused on interpreting and visualizing such new objects. During that period, I regarded the connection between geometry and combinatorics as the fundamental truth of mathematics, much like the mathematicians of earlier eras \cite{euclid}. With this in mind, my essay aimed to bridge the gap between abstract mathematical concepts and intuitive visualization. This current version serves as a translation, reinterpretation, and self-review of the original draft, featuring refined explanations and updated insights. Adopting a bottom-up approach, it simultaneously serves as both a complement to and detailed revision of Coxeter's foundational work \cite{coxeter1973regular}.
-		% Naturally, my primary source of information in the early stages was Wikipedia\footnote{\url{https://www.wikipedia.org/}}.
+		This paper develops a detailed bottom-up combinatorial framework for understanding higher-dimensional polytopes, with a particular focus on hyper-cubes and their generalizations. Starting from elementary geometric and combinatorial principles, the construction advances through successive dimensions, emphasizing the recursive and structural patterns inherent in these objects. The approach highlights the deep interplay between discrete combinatorics and geometric intuition, contributing to a broader understanding of polytopal geometry in the spirit of classical work such as that of Coxeter. To enhance clarity and rigor, the exposition includes proofs; these were previously left to the reader in \emph{Regular Polytopes}, and are presented alongside a descriptive methodology designed to support intuitive visualization of these abstract structures. This pedagogically oriented perspective constitutes the core contribution of the work as an accessible introduction to the subject.
 	\end{abstract}
 
 	\section{Introduction \label{sec:intro}}
@@ -31,11 +29,14 @@
 	This chapter begins by providing the motivation for our study, defining key terms, and outlining our approach to the subject. In \autoref{sec:deducible}, we explore the elements introduced, aiming to identify fundamental patterns that relate the number of components to the dimensionality of hyper-cubes. These patterns are then generalized and their geometric interpretations analyzed in detail in \autoref{sec:generalization} to enhance our ability to visualize the elements. In \autoref{sec:apps}, we discuss potential applications and properties derived from our findings. Finally, in \autoref{sec:conclusion}, we conclude the paper and propose directions for further research.
 		
 	\subsection{Motivation}
+	How many physical dimensions can we observe? Our eyes can perceive only two dimensions, as the light reflected from objects in front of us enters our eyes and stimulates the retina at the back of the eyeball. This results in a $2$-dim projection of $3$-dim objects. While we do perceive depth, it is actually an illusion created by our brain, which interprets the two different images provided by our eyes.
+	
+	This concept may not be immediately intuitive. To clarify, if we could truly see in three dimensions, we would be able to observe all six faces of a cube simultaneously. However, we can only perceive up to three faces at once and must rely on our imagination to visualize the entire object. Throughout this present work we will try to enhance that intuition.
 	
 	Let's start with an exercise, let $S$ be a square \cite{euclid} with sides of length $a$ and let $d$ be the length of its face diagonal. By Pythagoras \cite{euclid} we can establish the relation $d=a\sqrt{2}$. Let $d'$ be the length of the space diagonal on $C$, a cube \cite{euclid} with edges of length $a'$. Under a similar argument the length of the larger diagonal, which forms a right triangle jointly with the diagonal of one of the faces and an edge, can be calculated as $d'=a'\sqrt{3}$.
 	
-	We now define as $d(0) = a\sqrt{0}$ the diagonal of a point (no diagonal) and as $d(1) = a\sqrt{1}$ the diagonal of a line (the line itself). Then, we can generalize the analysis by the formula $d(n) = a\sqrt{n}$, where $d(n)$ outputs the length of the larger diagonal of an $n$-dimensional ($n$-dim from now on) cube, a polytope $P$ such that all sides are of size $a$ and all internal angles are right angles \cite{coxeter1973regular} (see \autoref{sec:def}).
-
+	We now define as $d(0) = a\sqrt{0}$ the diagonal of a point (no diagonal) and as $d(1) = a\sqrt{1}$ the diagonal of a line (the line itself). Then, we can generalize the analysis by the formula $d(n) = a\sqrt{n}$, where $d(n)$ outputs the length of the larger diagonal of an $n$-dimensional ($n$-dim from now on) cube, a polytope $P$ such that all sides are of size $a$ and all internal angles are right angles \cite{coxeter1973regular} (we provide more details in the following chapter).
+	
 	\begin{proof}
 		We will show the statement by the principle of induction \cite{rosen2011discrete}.
 		\begin{enumerate}
@@ -45,26 +46,23 @@
 		\end{enumerate}
 		By the base and inductive cases, we conclude the property holds.
 	\end{proof}
-
+	
 	Can we uncover additional patterns that depend on the dimension of a polygon? Will this exercise help us visualize and understand higher-dimensional structures? To explore these questions, we will apply tools from combinatorics and geometry.
 
 	
 	\subsection{Definitions \label{sec:def}}
 	
-	¿How many physical dimensions can we observe? Our eyes can perceive only two dimensions, as the light reflected from objects in front of us enters our eyes and stimulates the retina at the back of the eyeball. This results in a $2$-dim projection of $3$-dim objects. While we do perceive depth, it is actually an illusion created by our brain, which interprets the two different images provided by our eyes.
-	
-	This concept may not be immediately intuitive. To clarify, if we could truly see in three dimensions, we would be able to observe all six faces of a cube simultaneously. However, we can only perceive up to three faces at once and must rely on our imagination to visualize the entire object.
-	
 	First, let us define the fundamental elements, much like Euclid did at the beginning of his books \cite{euclid}. A point is a $0$-dimensional object, and a straight line is a $1$-dim object, defined as the shortest path between two points (called line from now on). A square is a $2$-dim object with four lines of equal length that connect four points in a closed loop, with all angles being right angles. And a cube is a $3$-dim object composed of six squares of equal size, such that every line is shared by two squares and all angles between adjacent squares are right angles.
-
-	We refer to the components of a higher-dimensional object as sub-objects, for example, a square is a sub-object of a cube. To construct the next object from a given object, we perform a translation of a copy of the object perpendicular to all the lines on the object, and connect each original point to its corresponding point in the copy with a straight line. Each new translation is of the same length as the translation in the previous dimension. This particular generalization of a regular polytope given by Coxeter \cite{coxeter1973regular} is called hyper-cube or measure polytope (or $\gamma_n$). An $n$-dim cube is a particular case of an orthotope, where all translations are not necessarily the same length; which in turn is a particular case of a parallelotope, where translations are not necessarily perpendicular \cite{coxeter1973regular}.
 	
-	When deriving formulas to describe objects, it is essential to demonstrate how they relate to this described construction. We recommend to analyze the visualization at \url{https://commons.wikimedia.org/wiki/File:From_Point_to_Tesseract_(Looped_Version).gif}.
+	We refer to the components of a higher-dimensional object as sub-objects, for example, a square is a sub-object of a cube. To construct the next object from a given object, we perform a translation of a copy of the object perpendicular to all the lines on the object, and connect each original point to its corresponding point in the copy with a straight line. Each new translation is of the same length as the translation in the previous dimension. This particular generalization of a regular polytope given by Coxeter \cite{coxeter1973regular} is called hyper-cube or measure polytope (or $\gamma_n$). An $n$-dim cube is a particular case of an orthotope, where all translations are not necessarily the same length; which in turn is a particular case of a parallelotope, where translations are not necessarily perpendicular \cite{coxeter1973regular}. This regular polytope can also be found in literature as $d$-cube or $n$-cube \cite{zieglerLectures}.
 	
-	The number of sub-objects for each object is listed in \autoref{objects_table}.
-
+	When deriving formulas to describe objects, it is essential to demonstrate how they relate to this described construction. We recommend to analyze the visualization at \href{https://commons.wikimedia.org/wiki/File:From_Point_to_Tesseract_(Looped_Version).gif}{wikimedia.org}.
+	
+	The number of sub-objects for each object is listed in \autoref{objects_table}. Each column represents the corresponding $f$-vector for a fixed dimension, this is, a descriptor that outputs the number of $k$-dim faces in a given polytope \cite{zieglerLectures}.
+	
 	\begin{table}[ht]
 		\centering
+		\caption{Number of components in introductory hyper-cubes with the $(n-1)$-dim diagonal highlighted \cite{coxeter1973regular}.}
 		\begin{tabular}{||c | c c c c||}
 			\hline
 			Sub-objects $\backslash$ Objects & Point & Line & Square & Cube\\\hline\hline
@@ -73,7 +71,6 @@
 			2-dim & 0 & 0 & 1 & \textbf{6}\\\hline
 			3-dim & 0 & 0 & 0 & 1\\\hline
 		\end{tabular}
-		\caption{Number of components in the constructed objects with the $(n-1)$-dim diagonal highlighted \cite{coxeter1973regular}}
 		\label{objects_table}
 	\end{table}
 	%\protect\footnotemark
@@ -90,7 +87,7 @@
 	The geometric interpretation for this formula is not as straightforward as in the case of the first row. In the duplication process, each line is doubled, while in the connection process, a new line is drawn between each original point and its corresponding copy. The combined process outputs the recursive formula $f(n) = 2 \cdot f(n-1) + p(n-1)$ such that $f(0) = 0$ and $f(1) = 1$ (see \autoref{objects_table}).
 	
 	\begin{proof}
-		 It is evident that $l(0) = 0$ and $l(1) = 1$, and if we plug in our formula for $l(n)$ and $p(n)$ into the recursion we obtain
+		It is evident that $l(0) = 0$ and $l(1) = 1$, and if we plug in our formula for $l(n)$ and $p(n)$ into the recursion we obtain
 		\begin{eqnarray*}
 			f(n) & = & 2 \cdot (n-1) \cdot 2^{n-2} + 2^{n-1}\\
 			& = & (n-1) \cdot 2^{n-1} + 2^{n-1}\\
@@ -99,10 +96,10 @@
 		\end{eqnarray*}
 		thereby solving the recursion using the principle of induction \cite{rosen2011discrete}.
 	\end{proof}
-
-	The previous analysis is key to understand where these formulas come from as we will show a generalization in \autoref{sec:generalization}. Each pattern has its own corresponding expression, interpretation, and recursive formula.
 	
-	Regarding the third and forth row in \autoref{objects_table}, we lack enough data and we must generate the next dimension to be capable of deducting further patterns. We define a tesseract following the same construction described in \autoref{sec:intro} with respect to a cube, such that we can use the formulas that we already derived to compute some of the cells. In consequence, a tesseract must have $16$ points and $32$ lines.
+	The previous analysis is key to understand where these formulas come from as we will show a generalization in the following chapter. Each pattern has its own corresponding expression, interpretation, and recursive formula.
+	
+	Regarding the third and forth row in \autoref{objects_table}, we lack enough data and we must generate the next dimension to be capable of deducting further patterns. We define a tesseract following the same construction described in the previous chapter with respect to a cube, such that we can use the formulas that we already derived to compute some of the cells. In consequence, a tesseract must have $16$ points and $32$ lines.
 	
 	To determine how many cubes are in a tesseract, we can examine the $(n-1)$-dim diagonal which is highlighted in \autoref{objects_table}. We observe: $2$ points in a line, $4$ lines in a square, and $6$ squares in a cube \cite{coxeter1973regular}. This new pattern suggests that the $n-1$ diagonal is described by the expression $2 \cdot n$, and that a tesseract contains $2 \cdot 4$ cubes ($8$ cubes). Its important to mention that intuition is not always reliable \cite{coxeter1973regular}, therefore all formulas must be justified by a geometric interpretation and proof.
 	
@@ -110,6 +107,7 @@
 	
 	\begin{table}[ht]
 		\centering
+		\caption{Number of components in hyper-cubes up to 4 dimensions with 3 cells highlighted.}
 		\begin{tabular}{||c || c c c c c||}
 			\hline
 			Sub-objects $\backslash$ Objects & Point & Line & Square & Cube & Tesseract \cite{coxeter1973regular}\\\hline\hline
@@ -119,26 +117,24 @@
 			3-dim & 0 & 0 & 0 & 1  & 8 \\\hline
 			4-dim & 0 & 0 & 0 & 0  & 1\\\hline
 		\end{tabular}
-		\caption{Number of components in the constructed objects up to 4 dimensions with 3 cells highlighted}
 		\label{4d_objects_table}
 	\end{table}
 	
-	Finally, we can approach the third and fourth rows under a similar analysis as the $l(n)$ formula: $s(n) = n\cdot(n-1)\cdot\frac{2^{n-2}}{2}$ for the amount of squares and $c(n) = n\cdot(n-1)\cdot(n-2)\cdot\frac{2^{n-3}}{6}$ for the amount of cubes. We leave the task of finding the interpretation and recursion of these formulas as an exercise for the reader. In the following chapter we will show how to generalize these patterns, analyze a geometric interpretation and prove our derivation is consistent with the object construction from \autoref{sec:intro}.
+	Finally, we can approach the third and fourth rows under a similar analysis as the $l(n)$ formula: $s(n) = n\cdot(n-1)\cdot\frac{2^{n-2}}{2}$ for the amount of squares and $c(n) = n\cdot(n-1)\cdot(n-2)\cdot\frac{2^{n-3}}{6}$ for the amount of cubes. We leave the task of finding the interpretation and recursion of these formulas as an exercise for the reader. In the following chapter we will show how to generalize these patterns, analyze a geometric interpretation and prove our derivation is consistent with the construction of hyper-cubes.
 	
 	\section{Generalization and interpretation \label{sec:generalization}}
 	
-	In \autoref{sec:deducible}, our approach to organizing the information allowed us to identify patterns in the structures. We now apply this same process to the formulas in order to derive a general form. Subsequently, we present a proof demonstrating that the formula aligns with the construction presented in \autoref{sec:intro}.
+	Previously, our approach to organizing the information allowed us to identify patterns in the structures. We now apply this same process to the formulas in order to derive a general form. Subsequently, we present a proof demonstrating that the formula aligns with the construction presented in the first chapter.
 	
 	\begin{table}[ht]
 		\centering
+		\caption{Compilation of formulas}
 		\begin{tabular}{r c l}
-			
 			$p(n)$ & = &$ 2^{n}$ \\[0.7ex]
 			$l(n)$ & = &$ n \cdot 2^{n-1}$ \\[0.4ex]
 			$s(n)$ & = &$ n\cdot(n-1)\cdot\frac{2^{n-2}}{2}$\\[0.4ex]
-			$c(n)$ & = &$ n \cdot (n-1) \cdot (n-2) \cdot \frac{2^{n-3}}{2 \cdot 3}$%\\[0.5ex]
+			$c(n)$ & = &$ n \cdot (n-1) \cdot (n-2) \cdot \frac{2^{n-3}}{2 \cdot 3}$
 		\end{tabular}
-		\caption{Compilation of formulas}
 		\label{resume_table}
 	\end{table}
 	
@@ -147,8 +143,14 @@
 	We show a compilation of the formulas in \autoref{resume_table}. From this, it is natural to conclude that $t(n) = n\cdot(n-1)\cdot(n-2)\cdot(n-3)\cdot\frac{2^{n-4}}{2 \cdot 3 \cdot 4}$ describe the amount of $4$-dim objects. \autoref{4d_objects_table} could be infinitely extended using these patterns, but our main task is to find a general formula that can model the object construction.
 	
 	
-	Let $n$ and $m$ be dimensions such that $n \geq m \geq 0$. We will denote the amount of $m$-dim sub-objects in a $n$-dim object as $P(n,m)$ and the falling factorial of $n$ over $m$ factors as $(n)_{m}$. We infer from \autoref{resume_table} that the pattern of the formulas is described by the expression \cite{coxeter1973regular}
-	$$P(n,m) = n \cdot (n-1)\cdot ... \cdot [n-(m-2)] \cdot [n-(m-1)] \cdot \frac{2^{n-m}}{m!} = \frac{(n)_{m}}{m!} \cdot 2^{n-m} = \binom{n}{m}\cdot2^{n-m} .$$
+	Let $n$ and $m$ be dimensions such that $n \geq m \geq 0$. We will denote the amount of $m$-dim sub-objects in a $n$-dim object as $P(n,m)$ and the falling factorial of $n$ over $m$ factors as $(n)_{m}$. We infer from \autoref{resume_table} that the pattern of the formulas is described by the expression
+	\begin{eqnarray*}
+		P(n,m) & = & n \cdot (n-1)\cdot ... \cdot [n-(m-2)] \cdot [n-(m-1)] \cdot \frac{2^{n-m}}{m!}\\
+		& = & \frac{(n)_{m}}{m!} \cdot 2^{n-m}\\
+		& = & \binom{n}{m}\cdot2^{n-m}.
+	\end{eqnarray*}
+	
+	Indeed, given a measure polytope of dimension $n$, plugging every $m \leq n$ in $P(n,m)$ \cite{coxeter1973regular} outputs the $f$-vector of the object \cite{zieglerLectures}.
 	
 	Notice than given an $n$-dim object and a point on the object, selecting a set of $m$ adjacent points fully identifies an $m$-dim object. For example, considering a particular point in a cube, combining it with an adjacent point identifies one of the $12$ lines. Moreover, when a point in a cube is combined with two other adjacent points, only one of the $6$ squares is adjacent to all three points simultaneously. This selection enables us to count sub-objects and give many explanations for the formula.
 	
@@ -156,7 +158,7 @@
 	
 	A second interpretation comes from a known property of binomial coefficients \cite{rice2007}. It can be proven that $P(n,m) = \sum_{k=m}^{n} \binom{n}{k} \binom{k}{m}$ \cite{countingHypercubes}, where this expression is derived by fixing a point on the object and counting all adjacent structures connected to that point. In more explicit terms, $P(n,m)$ can be calculated as selecting a point and computing the sum, for every $k\geq m$, of: the number of $m$-dim sets adjacent to a point in $k$ dimensions, multiplied by the number of $k$-dim sets adjacent to a point in $n$ dimensions. Our derived formula counts the same: there are $\binom{n}{m}$ ways to identify $m$-dim sets adjacent to a point in $n$ dimensions, and there are $2^{n-m}$ ways to complete a singular $m$-dim set of points, in order to enumerate all intermediate $k$-dim sets present in the object summation.
 	
-	Lastly, using the binomial theorem \cite{rice2007}, another interesting interpretation is that $P(n,m)$ can be defined as the coefficient of the term $X^{m}$ in the expansion of the expression $(2 + X)^{n}$ \cite{coxeter1973regular}. This interesting fact can be used when proving properties over these objects, an example is shown in \autoref{sec:euler}.
+	Lastly, using the binomial theorem \cite{rice2007}, another interesting interpretation is that $P(n,m)$ can be defined as the coefficient of the term $X^{m}$ in the expansion of the expression $(2 + X)^{n}$ \cite{coxeter1973regular}. This interesting fact can be used when proving properties over these objects, an example is shown in the next chapter.
 	
 	
 	\subsection{Proof of the formula's geometric interpretation}
@@ -172,7 +174,7 @@
 		\item $f'(n,m) = 2 \cdot f'(n-1, m) + f'(n-1, m-1)$ on any other case.
 	\end{enumerate}
 	
-	To count the amount of $m$-dim objects in an $n$-dim object, generate an $(n-1)$-dim object, duplicate its amount of $m$-dim objects and add its amount of $(m-1)$-dim objects. In other words, each cell's value in \autoref{4d_objects_table} is determined by doubling its immediate left neighbor and adding the upper-left diagonal cell. For example, in the case of the $3$ cells highlighted on the table: $24 = 2 \cdot 6 + 12$. Similar to $f$, the previously presented recursion, $f'$ also has a geometric interpretation related to the construction of objects (see \autoref{sec:intro}).
+	To count the amount of $m$-dim objects in an $n$-dim object, generate an $(n-1)$-dim object, duplicate its amount of $m$-dim objects and add its amount of $(m-1)$-dim objects. In other words, each cell's value in \autoref{4d_objects_table} is determined by doubling its immediate left neighbor and adding the upper-left diagonal cell. For example, in the case of the $3$ cells highlighted on the table: $24 = 2 \cdot 6 + 12$. Similar to $f$, the previously presented recursion, $f'$ also has a geometric interpretation related to the construction of hyper-cubes.
 	
 	\begin{proof}
 		To generate the next dimension, we duplicate an object, perform a translation, and connect the duplicated points (while Coxeter’s treatment remains concise \cite{coxeter1973regular}, our following analysis provides a detailed argument). Each time a translation and connection are performed: a line is generated between a point and its duplicate, points from one line are connected to points from its duplicate to form a square, points from one square are connected to points from its duplicate to form a cube, and so on. Thus, from every $m$-dim object a new $(m+1)$-dim object is additionally generated in the connection.
@@ -187,13 +189,15 @@
 			& = & \binom{n}{0} \cdot 2^{n-0}\\
 			& = & P(n,0).
 		\end{eqnarray*}
-
+		
 		While in the general case we obtain
 		\begin{eqnarray*}
 			f'(n,m) & = & 2 \cdot f'(n-1, m) + f'(n-1, m-1)\\
 			& = & 2 \cdot \binom{n-1}{m} \cdot 2^{(n-1)-m} + \binom{n-1}{m-1} \cdot 2^{(n-1)-(m-1)}\\
-			& = & \binom{n-1}{m} \cdot 2^{n-m} + \binom{n-1}{m-1} \cdot 2^{n-m} \ = \ \Big[\frac{(n-1)_{m}}{m!} + \frac{(n-1)_{m-1}}{(m-1)!} \Big] \cdot 2^{n-m}\\
-			& = & \Bigg[\frac{(n-1)_{m}}{m!} + \frac{m \cdot (n-1)_{m-1}}{m \cdot (m-1)!} \Bigg] \cdot 2^{n-m} \ = \ \frac{(n-1)_{m} + m \cdot (n-1)_{m-1}}{m!} \cdot 2^{n-m}\\
+			& = & \binom{n-1}{m} \cdot 2^{n-m} + \binom{n-1}{m-1} \cdot 2^{n-m}\\
+			& = & \Big[\frac{(n-1)_{m}}{m!} + \frac{(n-1)_{m-1}}{(m-1)!} \Big] \cdot 2^{n-m}\\
+			& = & \Bigg[\frac{(n-1)_{m}}{m!} + \frac{m \cdot (n-1)_{m-1}}{m \cdot (m-1)!} \Bigg] \cdot 2^{n-m}\\
+			& = & \frac{(n-1)_{m} + m \cdot (n-1)_{m-1}}{m!} \cdot 2^{n-m}\\
 			& = & \frac{[(n-1) - m + 1] \cdot (n-1)_{m-1} + m \cdot (n-1)_{m-1}}{m!} \cdot 2^{n-m}\\
 			& = & \frac{(n- m) \cdot (n-1)_{m-1} + m \cdot (n-1)_{m-1}}{m!} \cdot 2^{n-m}\\
 			& = & \frac{n \cdot (n-1)_{m-1}}{m!} \cdot 2^{n-m} \ = \ \frac{n_{m}}{m!} \cdot 2^{n-m}\\
@@ -201,21 +205,24 @@
 		\end{eqnarray*}
 		thereby solving the recursion using the principle of induction \cite{rosen2011discrete}.
 	\end{proof}
-
+	
 	We believe that the detailed explanations of the construction process assist in visualizing these high-dimensional elements, especially as an introduction to the topic. Once the mathematical concepts are internalized, we encourage readers to explore various projections of these objects to deepen their understanding of the spatial representations of these structures.
 	
 	\section{Applications \label{sec:apps}}
-	
-	After fully grasping the concepts outlined in \autoref{sec:generalization}, we proceed to demonstrate various applications of the formula. We believe that our approach holds significant potential for modeling and solving problems not only in geometry but also in fields such as optimization, combinatorics, physics, and beyond.
+	After fully grasping the outlined concepts, we proceed to demonstrate various applications of the formula. We believe that our approach holds significant potential for modeling and solving problems not only in geometry but also in fields such as optimization, combinatorics, physics, and beyond.
 	
 	\subsection{Euler characteristic \label{sec:euler}}
 	
-	A known property of polygons is the Euler characteristic \cite{euler}, defined for $3$-dim objects as the number of points, minus the number of lines, plus the amount of squares (using our name convention). For example, cubes have an Euler characteristic of $8 - 12 + 6 = 2$.
-
-	Given a $n$-dim object, let $d_m$ be the amount of $m$-dim objects and $E$ the Euler characteristic. We generalize the property similar to Schläfli \cite{coxeter1973regular}: $E=d_{0}-d_{1}+d_{2}- ... \pm d_{n-3}\pm d_{n-2}\pm d_{n-1} = \sum_{m=0}^{n-1}(-1)^{m}d_{m}$. If we apply the formula to the studied objects obtained by the construction described in \autoref{sec:intro} we arrive at
+	A known property of polygons is the Euler characteristic \cite{euler,zieglerLectures}, defined for $3$-dim objects as the number of points, minus the number of lines, plus the amount of squares (using our name convention). For example, cubes have an Euler characteristic of $8 - 12 + 6 = 2$.
+	
+	Given a $n$-dim object, let $d_m$ be the amount of $m$-dim objects and $E$ the Euler characteristic. We generalize the property similar to Schläfli \cite{coxeter1973regular}: $E=d_{0}-d_{1}+d_{2}- ... \pm d_{n-3}\pm d_{n-2}\pm d_{n-1} = \sum_{m=0}^{n-1}(-1)^{m}d_{m}$. If we apply the formula to hyper-cubes we arrive at
 	$$E_{obj} \ = \ \sum_{m=0}^{n-1}(-1)^{m} \cdot P(n,m)\ =\ \sum_{m=0}^{n-1}(-1)^{m} \cdot \binom{n}{m} \cdot 2^{n-m},$$
 	and if we complete the sum (from the fact that $P(n,m)$ comes from the expansion of $(2 + X)^{n}$ \cite{coxeter1973regular}) we obtain
-	$$E_{obj} \ =\ \Bigg[\sum_{m=0}^{n} \binom{n}{m} \cdot 2^{n-m} \cdot (-1)^{m}\Bigg] - (-1)^m \ = \ (2 + (-1))^{n}-(-1)^{n} \ = \ 1-(-1)^{n}.$$
+	\begin{eqnarray*}
+		E_{obj} & = & \Bigg[\sum_{m=0}^{n} \binom{n}{m} \cdot 2^{n-m} \cdot (-1)^{m}\Bigg] - (-1)^m\\
+		& = & (2 + (-1))^{n}-(-1)^{n}\\
+		& = & 1-(-1)^{n}.
+	\end{eqnarray*}
 	
 	Consequently, for every $i \geq 0$, $2i$ dimensional objects have an Euler characteristic of $2$, whereas those of dimension $2i+1$ exhibit an Euler characteristic of $0$ \cite{coxeter1973regular}.
 	
@@ -243,13 +250,12 @@
 	where $n,m \in \mathbb{R}^{+}_{0}$ such that $n\geq m$. Given these restrictions, it follows that the output satisfies $P(n,m) \geq 1$. 
 	
 	While an interpretation and application of this formula have yet to be fully explored, we believe it may be linked to fractal dimensions \cite{fractionalDim}, potentially offering real-world applications in fields such as biology and physics.
-
 	
 	\section{Conclusion and Future Directions \label{sec:conclusion}}
 	
 	To summarize, we have outlined key concepts, identified fundamental patterns, and developed geometric interpretations to improve our understanding of the relationship between component numbers and structural dimensions. We believe our approach provides a detailed and valuable tool for mentally visualizing higher-dimensional objects.
 	
-	Furthermore, our exploration has uncovered potential applications and suggested further avenues for investigation, including the examination of slicing objects and the study of fractional dimensions. Additionally, we propose the development of new constructions that differ from the one presented in this work, or study a similar analysis on other constructions proposed by Coxeter \cite{coxeter1973regular}.
+	Furthermore, our exploration has uncovered potential applications and suggested further avenues for investigation, including the examination of slicing objects and the study of fractional dimensions \cite{fractionalDim}. Additionally, we propose the development of new constructions that differ from the one presented in this work, or study a similar analysis on other constructions proposed by Coxeter \cite{coxeter1973regular}.
 	
 	We hope this work serves as both an introduction to the subject and a valuable contribution to future research, paving the way for new applications in both theoretical and practical contexts.
 	
